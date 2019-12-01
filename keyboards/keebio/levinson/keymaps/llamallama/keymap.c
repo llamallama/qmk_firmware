@@ -8,13 +8,13 @@
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
-#define _ADJUST 16
+#define _MOUSE 16
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
-  ADJUST,
+  MOUSE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -73,21 +73,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, KC_VOLU, KC_MPLY \
 ),
 
-/* Adjust (Lower + Raise)
+/* Mouse (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      | Reset|      |      |      |      |      |      |      |      |      |  Del |
+ * |      |BTN 2 |MS UP |BTN 1 |WHL UP|      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|      |      |      |      |
+ * |      |MS LFT|MS DWN|MS RHT|WHL DN|      |      |BTN 1 |BTN 2 |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |BTN 2 |BTN 1 |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_ADJUST] =  LAYOUT_ortho_4x12( \
-  _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
-  _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+[_MOUSE] =  LAYOUT_ortho_4x12( \
+  _______, KC_BTN2, KC_MS_U, KC_BTN1, KC_WH_U, _______, _______, _______, _______, _______, _______, _______, \
+  _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______, _______, KC_BTN1, KC_BTN2, _______, _______, _______, \
+  _______, _______, _______, KC_BTN2, KC_BTN1, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
 
@@ -117,28 +117,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _MOUSE);
       } else {
         layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _MOUSE);
       }
       return false;
       break;
     case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _MOUSE);
       } else {
         layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _MOUSE);
       }
       return false;
       break;
-    case ADJUST:
+    case MOUSE:
       if (record->event.pressed) {
-        layer_on(_ADJUST);
+        layer_on(_MOUSE);
       } else {
-        layer_off(_ADJUST);
+        layer_off(_MOUSE);
       }
       return false;
       break;
