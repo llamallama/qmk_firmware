@@ -28,9 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define EE_HANDS
 
 // Mouse key settings
-#define MOUSEKEY_DELAY 150
+#define MOUSEKEY_DELAY 50
 #define MOUSEKEY_INTERVAL 16
-#define MOUSEKEY_MAX_SPEED 2
-#define MOUSEKEY_TIME_TO_MAX 5
-#define MOUSEKEY_WHEEL_TIME_TO_MAX 0
+#define MOUSEKEY_MAX_SPEED 3
+#define MOUSEKEY_TIME_TO_MAX 15
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 15
 #define MOUSEKEY_WHEEL_MAX_SPEED 1
